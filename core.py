@@ -140,4 +140,4 @@ if __name__ == '__main__':
     search_url = ("https://scholar.google.com/citations?view_op=search_authors&hl=en&mauthors=algeria+AI&before_author"
                   "=tCMZ_xMAAAAJ&astart=0")
 
-    convert_2_json(scrape_all_pages(search_url), "second file")
+    convert_2_json(scrape_all_pages(search_url), "result")
