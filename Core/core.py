@@ -132,7 +132,7 @@ def convert_2_json(mydata: list, myname: str):
     with open(json_file_path, 'w') as json_file:
         json.dump(json_data, json_file, indent=4)
 
-    print(f"JSON data has been written to {json_file_path}")
+    print(f"JSON data has been written to : {json_file_path}")
 
 
 # The main
