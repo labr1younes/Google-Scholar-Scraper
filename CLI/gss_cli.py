@@ -1,4 +1,4 @@
-from ..Core import core as mycore
+from Core import core as mycore
 import argparse
 
 

@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, uic
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QLineEdit, QTextEdit
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QLineEdit, QTextEdit, QProgressBar, QLabel
 import sys
-# from ..Core import core as mycore
+from Core import core as mycore
 
 
 class MainWindow(QMainWindow):
@@ -14,6 +14,8 @@ class MainWindow(QMainWindow):
         self.btn = self.findChild(QPushButton, "btn")
         self.inputName = self.findChild(QLineEdit, "inputName")
         self.inputURL = self.findChild(QTextEdit, "inputURL")
+        self.progressBar = self.findChild(QProgressBar, "progressbar")
+        self.label = self.findChild(QLabel, "label")
 
         self.setWindowTitle("GSS")
 
@@ -27,9 +29,10 @@ class MainWindow(QMainWindow):
         myurl = str(self.inputURL.toPlainText())
         myname = str(self.inputName.text())
         print(myurl, " ------------ ", myname)
-        # if self.is_url(myurl):
-            # ss = mycore.convert_2_json(mycore.scrape_all_pages(myurl), myname)
-
+        if self.is_url(myurl):
+            tmpdata = mycore.scrape_all_pages(myurl)
+            nbrprofiles = tmpdata[1]
+            mycore.convert_2_json(tmpdata, myname)
 
 
 def main():
