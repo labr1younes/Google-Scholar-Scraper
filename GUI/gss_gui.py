@@ -1,4 +1,5 @@
 from PyQt5 import QtWidgets, uic
+from PyQt5.QtCore import QCoreApplication
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QLineEdit, QTextEdit, QProgressBar, QLabel
 import sys
 from Core import core as mycore
@@ -28,11 +29,16 @@ class MainWindow(QMainWindow):
     def myfunction(self):
         myurl = str(self.inputURL.toPlainText())
         myname = str(self.inputName.text())
-        print(myurl, " ------------ ", myname)
+        self.progressBar.setValue(5)
+        # QCoreApplication.processEvents()  # Force the application to process events and update the UI
+
         if self.is_url(myurl):
             tmpdata = mycore.scrape_all_pages(myurl)
-            nbrprofiles = tmpdata[1]
+            self.label.setText(f"There are :{tmpdata[1]} Profile .")
+            # QCoreApplication.processEvents()  # Force the application to process events and update the UI
+            self.progressBar.setValue(25)
             mycore.convert_2_json(tmpdata, myname)
+            self.progressBar.setValue(100)
 
 
 def main():
